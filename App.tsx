@@ -7,10 +7,11 @@ import TodoItemSeparator from './src/components/TodoItemSeparator/TodoItemSepara
 import AddTodoButton from './src/components/AddTodoButton/AddTodoButton';
 import EmptyComponent from './src/components/EmptyComponent/EmptyComponent';
 import AddTodoModal from './src/components/AddTodoModal/AddTodoModal';
+import {TodoItem as TodoItemType} from './src/utilities/types';
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [todos, setTodos] = useState<TodoItemType[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const itemSeparator = () => {
     return <TodoItemSeparator />;
@@ -29,12 +30,15 @@ export default function App() {
           renderItem={({item}) => <TodoItem item={item} />}
           ItemSeparatorComponent={itemSeparator}
           ListEmptyComponent={emptyComponent}
+          keyExtractor={item => item.id.toString()}
         />
       </View>
       <AddTodoButton onPress={() => setIsModalVisible(true)} />
       <AddTodoModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
+        todos={todos}
+        setTodos={setTodos}
       />
     </View>
   );

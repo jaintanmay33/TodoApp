@@ -20,6 +20,7 @@ const COLORS = {
   black2: '#00000080',
   white: '#fff',
   grey: '#C0C0C0',
+  red: '#F00',
 };
 
 export {SCREEN_WIDTH, APP_SIZES, COLORS};

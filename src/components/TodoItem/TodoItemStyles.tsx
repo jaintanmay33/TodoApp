@@ -7,7 +7,12 @@ const todoItemStyles = StyleSheet.create({
     borderRadius: APP_SIZES.size10,
     padding: APP_SIZES.size10 + APP_SIZES.size5,
   },
-  todoItemText: {
+  todoItemTitle: {
+    fontWeight: '600',
+    color: COLORS.black,
+    fontSize: APP_SIZES.size10 + APP_SIZES.size8,
+  },
+  todoItemDescription: {
     fontWeight: '400',
     color: COLORS.black,
     fontSize: APP_SIZES.size10 + APP_SIZES.size4,

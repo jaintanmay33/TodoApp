@@ -23,17 +23,37 @@ const addTodoModalStyles = StyleSheet.create({
     marginBottom: APP_SIZES.size11,
     fontSize: APP_SIZES.size10 + APP_SIZES.size8,
   },
+  inputContainer: {
+    marginBottom: APP_SIZES.size11,
+  },
   modalTextInput: {
     borderColor: COLORS.grey,
     borderWidth: APP_SIZES.size2,
     borderRadius: APP_SIZES.size10,
-    marginBottom: APP_SIZES.size11,
     paddingVertical: APP_SIZES.size10,
     fontSize: APP_SIZES.size10 + APP_SIZES.size4,
     paddingHorizontal: APP_SIZES.size10 + APP_SIZES.size5,
   },
   modalFocusedInput: {
     borderColor: COLORS.primaryColor,
+  },
+  modalInputLabelText: {
+    fontWeight: '500',
+    color: COLORS.grey,
+    position: 'absolute',
+    top: -APP_SIZES.size7,
+    backgroundColor: COLORS.white,
+    paddingHorizontal: APP_SIZES.size5,
+    left: APP_SIZES.size10 + APP_SIZES.size5,
+  },
+  modalInputFocusedLabelText: {
+    color: COLORS.primaryColor,
+  },
+  modalInputErrorText: {
+    fontWeight: '500',
+    color: COLORS.red,
+    marginTop: APP_SIZES.size5,
+    marginLeft: APP_SIZES.size10 + APP_SIZES.size5,
   },
   buttonContainer: {
     flexDirection: 'row',
