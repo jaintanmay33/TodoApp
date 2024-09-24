@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {APP_SIZES, COLORS, SCREEN_WIDTH} from '../../utilities/constants';
 
-const addTodoModalStyles = StyleSheet.create({
+const deleteTodoModalStyles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: 'center',
@@ -34,43 +34,17 @@ const addTodoModalStyles = StyleSheet.create({
     marginBottom: APP_SIZES.size11,
     fontSize: APP_SIZES.size10 + APP_SIZES.size8,
   },
-  inputContainer: {
+  modalInfoText: {
+    textAlign: 'center',
+    color: COLORS.black,
     marginBottom: APP_SIZES.size11,
-  },
-  modalTextInput: {
-    borderColor: COLORS.grey,
-    borderWidth: APP_SIZES.size2,
-    borderRadius: APP_SIZES.size10,
-    paddingVertical: APP_SIZES.size10,
     fontSize: APP_SIZES.size10 + APP_SIZES.size4,
-    paddingHorizontal: APP_SIZES.size10 + APP_SIZES.size5,
-  },
-  modalFocusedInput: {
-    borderColor: COLORS.primaryColor,
-  },
-  modalInputLabelText: {
-    fontWeight: '500',
-    color: COLORS.grey,
-    position: 'absolute',
-    top: -APP_SIZES.size7,
-    backgroundColor: COLORS.white,
-    paddingHorizontal: APP_SIZES.size5,
-    left: APP_SIZES.size10 + APP_SIZES.size5,
-  },
-  modalInputFocusedLabelText: {
-    color: COLORS.primaryColor,
-  },
-  modalInputErrorText: {
-    fontWeight: '500',
-    color: COLORS.red,
-    marginTop: APP_SIZES.size5,
-    marginLeft: APP_SIZES.size10 + APP_SIZES.size5,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  addTodoButton: {
+  deleteTodoButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: APP_SIZES.size10,
@@ -78,7 +52,7 @@ const addTodoModalStyles = StyleSheet.create({
     width: APP_SIZES.size19 + APP_SIZES.size10,
     paddingVertical: APP_SIZES.size10 + APP_SIZES.size2,
   },
-  addTodoButtonText: {
+  deleteTodoButtonText: {
     fontWeight: '700',
     color: COLORS.white,
     fontSize: APP_SIZES.size10 + APP_SIZES.size6,
@@ -100,4 +74,4 @@ const addTodoModalStyles = StyleSheet.create({
   },
 });
 
-export default addTodoModalStyles;
+export default deleteTodoModalStyles;

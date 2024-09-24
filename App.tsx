@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {View, FlatList} from 'react-native';
 import appStyles from './AppStyles';
 import Header from './src/components/Header/Header';
@@ -13,13 +13,29 @@ export default function App() {
   const [todos, setTodos] = useState<TodoItemType[]>([]);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-  const itemSeparator = () => {
-    return <TodoItemSeparator />;
+  const showAddModal = () => {
+    setIsModalVisible(true);
   };
 
-  const emptyComponent = () => {
-    return <EmptyComponent />;
+  const handleAddTodos = (title: string, description?: string) => {
+    const id = Math.floor(Math.random() * 10000000000);
+    setTodos([...todos, {id, title, description}]);
   };
+
+  const handleEditTodos = (id: number, title: string, description?: string) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? {...todo, title, description} : todo,
+      ),
+    );
+  };
+
+  const handleDeleteTodos = (todoId: number) => {
+    setTodos(todos.filter(todo => todo.id !== todoId));
+  };
+
+  const itemSeparator = useMemo(() => TodoItemSeparator, []);
+  const emptyComponent = useMemo(() => EmptyComponent, []);
 
   return (
     <View style={appStyles.container}>
@@ -27,18 +43,24 @@ export default function App() {
       <View style={appStyles.listContainer}>
         <FlatList
           data={todos}
-          renderItem={({item}) => <TodoItem item={item} />}
+          renderItem={({item}) => (
+            <TodoItem
+              item={item}
+              handleEditTodos={handleEditTodos}
+              handleDeleteTodos={handleDeleteTodos}
+            />
+          )}
           ItemSeparatorComponent={itemSeparator}
           ListEmptyComponent={emptyComponent}
           keyExtractor={item => item.id.toString()}
+          extraData={todos}
         />
       </View>
-      <AddTodoButton onPress={() => setIsModalVisible(true)} />
+      <AddTodoButton onPress={showAddModal} />
       <AddTodoModal
         isModalVisible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        todos={todos}
-        setTodos={setTodos}
+        handleAddTodos={handleAddTodos}
       />
     </View>
   );

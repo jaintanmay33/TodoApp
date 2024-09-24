@@ -13,10 +13,10 @@ const addTodoButtonStyles = StyleSheet.create({
     borderRadius: APP_SIZES.size14,
     backgroundColor: COLORS.primaryColor,
   },
-  text: {
-    fontWeight: '500',
-    color: COLORS.white,
-    fontSize: APP_SIZES.size12,
+  icon: {
+    tintColor: COLORS.white,
+    width: APP_SIZES.size12 + APP_SIZES.size5,
+    height: APP_SIZES.size12 + APP_SIZES.size5,
   },
 });
 

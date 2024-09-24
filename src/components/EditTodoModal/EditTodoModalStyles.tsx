@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {APP_SIZES, COLORS, SCREEN_WIDTH} from '../../utilities/constants';
 
-const addTodoModalStyles = StyleSheet.create({
+const editTodoModalStyles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: 'center',
@@ -70,7 +70,7 @@ const addTodoModalStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  addTodoButton: {
+  editTodoButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: APP_SIZES.size10,
@@ -78,7 +78,7 @@ const addTodoModalStyles = StyleSheet.create({
     width: APP_SIZES.size19 + APP_SIZES.size10,
     paddingVertical: APP_SIZES.size10 + APP_SIZES.size2,
   },
-  addTodoButtonText: {
+  editTodoButtonText: {
     fontWeight: '700',
     color: COLORS.white,
     fontSize: APP_SIZES.size10 + APP_SIZES.size6,
@@ -100,4 +100,4 @@ const addTodoModalStyles = StyleSheet.create({
   },
 });
 
-export default addTodoModalStyles;
+export default editTodoModalStyles;
