@@ -10,6 +10,11 @@ export type TodoItemProps = {
   item: TodoItem;
   handleEditTodos: (id: number, title: string, description?: string) => void;
   handleDeleteTodos: (todoId: number) => void;
+  handleCompleteTodos: (
+    id: number,
+    title: string,
+    description?: string,
+  ) => void;
 };
 
 export type AddTodoProps = {
@@ -34,4 +39,15 @@ export type DeleteTodoModalProps = {
   setIsModalVisible: (visible: boolean) => void;
   handleDeleteTodos: (todoId: number) => void;
   todoId: number;
+};
+
+export type CompleteTodoModalProps = {
+  isModalVisible: boolean;
+  setIsModalVisible: (visible: boolean) => void;
+  handleCompleteTodos: (
+    id: number,
+    title: string,
+    description?: string,
+  ) => void;
+  todoItem: TodoItem;
 };

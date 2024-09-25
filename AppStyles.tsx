@@ -4,13 +4,27 @@ import {APP_SIZES, COLORS} from './src/utilities/constants';
 const appStyles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: COLORS.backgroundColor,
+  },
+  emptyText: {
+    fontWeight: '500',
+    color: COLORS.grey,
+    fontSize: APP_SIZES.size11,
   },
   listContainer: {
     flex: 1,
-    marginBottom: APP_SIZES.size18,
-    paddingVertical: APP_SIZES.size13,
+    width: '100%',
+    marginTop: APP_SIZES.size16,
+    paddingTop: APP_SIZES.size11,
     paddingHorizontal: APP_SIZES.size11,
+  },
+  completedText: {
+    fontWeight: '500',
+    color: COLORS.black,
+    marginBottom: APP_SIZES.size10,
+    fontSize: APP_SIZES.size10 + APP_SIZES.size5,
   },
 });
 

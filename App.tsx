@@ -1,16 +1,18 @@
 import React, {useState, useMemo} from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import appStyles from './AppStyles';
 import Header from './src/components/Header/Header';
 import TodoItem from './src/components/TodoItem/TodoItem';
+import CompletedTodoItem from './src/components/CompletedTodoItem/CompletedTodoItem';
 import TodoItemSeparator from './src/components/TodoItemSeparator/TodoItemSeparator';
 import AddTodoButton from './src/components/AddTodoButton/AddTodoButton';
-import EmptyComponent from './src/components/EmptyComponent/EmptyComponent';
 import AddTodoModal from './src/components/AddTodoModal/AddTodoModal';
 import {TodoItem as TodoItemType} from './src/utilities/types';
+import APP_TEXTS from './src/utilities/appTexts';
 
 export default function App() {
   const [todos, setTodos] = useState<TodoItemType[]>([]);
+  const [completedTodos, setCompletedTodos] = useState<TodoItemType[]>([]);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const showAddModal = () => {
@@ -34,28 +36,64 @@ export default function App() {
     setTodos(todos.filter(todo => todo.id !== todoId));
   };
 
+  const handleCompleteTodos = (
+    todoId: number,
+    todoTitle: string,
+    todoDescription?: string,
+  ) => {
+    setTodos(todos.filter(todo => todo.id !== todoId));
+    setCompletedTodos([
+      ...completedTodos,
+      {id: todoId, title: todoTitle, description: todoDescription},
+    ]);
+  };
+
   const itemSeparator = useMemo(() => TodoItemSeparator, []);
-  const emptyComponent = useMemo(() => EmptyComponent, []);
 
   return (
     <View style={appStyles.container}>
       <Header />
-      <View style={appStyles.listContainer}>
-        <FlatList
-          data={todos}
-          renderItem={({item}) => (
-            <TodoItem
-              item={item}
-              handleEditTodos={handleEditTodos}
-              handleDeleteTodos={handleDeleteTodos}
-            />
-          )}
-          ItemSeparatorComponent={itemSeparator}
-          ListEmptyComponent={emptyComponent}
-          keyExtractor={item => item.id.toString()}
-          extraData={todos}
-        />
-      </View>
+      {todos.length === 0 && completedTodos.length === 0 && (
+        <Text style={appStyles.emptyText}>{APP_TEXTS.emptyListText}</Text>
+      )}
+      {todos.length !== 0 && (
+        <View style={appStyles.listContainer}>
+          <FlatList
+            data={todos}
+            renderItem={({item}) => (
+              <TodoItem
+                item={item}
+                handleEditTodos={handleEditTodos}
+                handleDeleteTodos={handleDeleteTodos}
+                handleCompleteTodos={handleCompleteTodos}
+              />
+            )}
+            ItemSeparatorComponent={itemSeparator}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={item => item.id.toString()}
+            extraData={todos}
+          />
+        </View>
+      )}
+      {completedTodos.length !== 0 && (
+        <View style={appStyles.listContainer}>
+          <Text style={appStyles.completedText}>Completed Todos</Text>
+          <FlatList
+            data={completedTodos}
+            renderItem={({item}) => (
+              <CompletedTodoItem
+                item={item}
+                handleEditTodos={handleEditTodos}
+                handleDeleteTodos={handleDeleteTodos}
+                handleCompleteTodos={handleCompleteTodos}
+              />
+            )}
+            ItemSeparatorComponent={itemSeparator}
+            keyExtractor={item => item.id.toString()}
+            extraData={completedTodos}
+          />
+        </View>
+      )}
       <AddTodoButton onPress={showAddModal} />
       <AddTodoModal
         isModalVisible={isModalVisible}

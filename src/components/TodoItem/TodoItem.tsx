@@ -5,14 +5,18 @@ import {TodoItemProps} from '../../utilities/types';
 import icons from '../../utilities/icons';
 import EditTodoModal from '../EditTodoModal/EditTodoModal';
 import DeleteTodoModal from '../DeleteTodoModal/DeleteTodoModal';
+import CompleteTodoModal from '../CompleteTodoModal/CompleteTodoModal';
 
 export default function TodoItem({
   item,
   handleEditTodos,
   handleDeleteTodos,
+  handleCompleteTodos,
 }: TodoItemProps) {
   const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] =
+    useState<boolean>(false);
+  const [isCompletedModalVisible, setIsCompletedModalVisible] =
     useState<boolean>(false);
 
   const showEditModal = () => {
@@ -23,8 +27,19 @@ export default function TodoItem({
     setIsDeleteModalVisible(true);
   };
 
+  const showCompleteModal = () => {
+    setIsCompletedModalVisible(true);
+  };
+
   return (
     <View key={item.id} style={todoItemStyles.todoItemContainer}>
+      <Pressable onPress={showCompleteModal}>
+        <Image
+          source={icons.checkboxIcon}
+          style={todoItemStyles.todoItemIcon}
+          resizeMode="contain"
+        />
+      </Pressable>
       <View style={todoItemStyles.todoItemContent}>
         <Text style={todoItemStyles.todoItemTitle}>{item.title}</Text>
         {item.description && (
@@ -60,6 +75,12 @@ export default function TodoItem({
         setIsModalVisible={setIsDeleteModalVisible}
         handleDeleteTodos={handleDeleteTodos}
         todoId={item.id}
+      />
+      <CompleteTodoModal
+        isModalVisible={isCompletedModalVisible}
+        setIsModalVisible={setIsCompletedModalVisible}
+        handleCompleteTodos={handleCompleteTodos}
+        todoItem={item}
       />
     </View>
   );
