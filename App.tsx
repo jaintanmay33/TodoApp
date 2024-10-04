@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {View, FlatList, Text} from 'react-native';
 import appStyles from './AppStyles';
 import Header from './src/components/Header/Header';
@@ -9,15 +9,30 @@ import AddTodoButton from './src/components/AddTodoButton/AddTodoButton';
 import AddTodoModal from './src/components/AddTodoModal/AddTodoModal';
 import {TodoItem as TodoItemType} from './src/utilities/types';
 import APP_TEXTS from './src/utilities/appTexts';
+import {storage} from './src/utilities/storage';
+import {APP_SIZES} from './src/utilities/constants';
 
 export default function App() {
   const [todos, setTodos] = useState<TodoItemType[]>([]);
   const [completedTodos, setCompletedTodos] = useState<TodoItemType[]>([]);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-  const showAddModal = () => {
-    setIsModalVisible(true);
-  };
+  useEffect(() => {
+    const savedTodos = storage.getString('todos');
+    const savedCompletedTodos = storage.getString('completedTodos');
+    if (savedTodos) setTodos(JSON.parse(savedTodos));
+    if (savedCompletedTodos) setCompletedTodos(JSON.parse(savedCompletedTodos));
+  }, []);
+
+  useEffect(() => {
+    storage.set('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  useEffect(() => {
+    storage.set('completedTodos', JSON.stringify(completedTodos));
+  }, [completedTodos]);
+
+  const showAddModal = () => setIsModalVisible(true);
 
   const handleAddTodos = (title: string, description?: string) => {
     const id = Math.floor(Math.random() * 10000000000);
@@ -57,7 +72,7 @@ export default function App() {
         <Text style={appStyles.emptyText}>{APP_TEXTS.emptyListText}</Text>
       )}
       {todos.length !== 0 && (
-        <View style={appStyles.listContainer}>
+        <View style={[appStyles.listContainer, {marginTop: APP_SIZES.size16}]}>
           <FlatList
             data={todos}
             renderItem={({item}) => (

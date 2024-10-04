@@ -15,6 +15,12 @@ const todoItemStyles = StyleSheet.create({
     flex: 1,
     marginHorizontal: APP_SIZES.size10,
   },
+  todoItemCheckBox: {
+    width: APP_SIZES.size11,
+    height: APP_SIZES.size11,
+    borderRadius: APP_SIZES.size5,
+    backgroundColor: COLORS.primaryColor,
+  },
   todoItemTitle: {
     fontWeight: '600',
     color: COLORS.black,

@@ -4,11 +4,8 @@ import {APP_SIZES, COLORS} from '../../utilities/constants';
 const completedTodoItemStyles = StyleSheet.create({
   todoItemContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: COLORS.white,
     borderRadius: APP_SIZES.size10,
-    justifyContent: 'space-between',
     padding: APP_SIZES.size10 + APP_SIZES.size5,
   },
   todoItemTitle: {

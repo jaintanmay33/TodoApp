@@ -34,11 +34,7 @@ export default function TodoItem({
   return (
     <View key={item.id} style={todoItemStyles.todoItemContainer}>
       <Pressable onPress={showCompleteModal}>
-        <Image
-          source={icons.checkboxIcon}
-          style={todoItemStyles.todoItemIcon}
-          resizeMode="contain"
-        />
+        <View style={todoItemStyles.todoItemCheckBox} />
       </Pressable>
       <View style={todoItemStyles.todoItemContent}>
         <Text style={todoItemStyles.todoItemTitle}>{item.title}</Text>

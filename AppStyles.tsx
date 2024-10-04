@@ -16,9 +16,7 @@ const appStyles = StyleSheet.create({
   listContainer: {
     flex: 1,
     width: '100%',
-    marginTop: APP_SIZES.size16,
-    paddingTop: APP_SIZES.size11,
-    paddingHorizontal: APP_SIZES.size11,
+    padding: APP_SIZES.size11,
   },
   completedText: {
     fontWeight: '500',
