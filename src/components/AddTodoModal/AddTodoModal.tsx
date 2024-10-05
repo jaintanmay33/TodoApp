@@ -5,6 +5,7 @@ import addTodoModalStyles from './AddTodoModalStyles';
 import APP_TEXTS from '../../utilities/appTexts';
 import {validateTitle} from '../../utilities/validations';
 import icons from '../../utilities/icons';
+import {COLORS} from '../../utilities/constants';
 
 export default function AddTodoModal({
   isModalVisible,
@@ -66,6 +67,8 @@ export default function AddTodoModal({
                 setTitleError(validateTitle(text));
               }}
               placeholder={APP_TEXTS.todoTitlePlaceholder}
+              placeholderTextColor={COLORS.grey}
+              cursorColor={COLORS.primaryColor}
               onFocus={() => setFocusedField('title')}
               onBlur={() => setFocusedField('')}
             />
@@ -95,6 +98,8 @@ export default function AddTodoModal({
               value={description}
               onChangeText={setDescription}
               placeholder={APP_TEXTS.todoDescPlaceholder}
+              cursorColor={COLORS.primaryColor}
+              placeholderTextColor={COLORS.grey}
               onFocus={() => setFocusedField('description')}
               onBlur={() => setFocusedField('')}
               multiline

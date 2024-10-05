@@ -38,6 +38,7 @@ const addTodoModalStyles = StyleSheet.create({
     marginBottom: APP_SIZES.size11,
   },
   modalTextInput: {
+    color: COLORS.black,
     borderColor: COLORS.grey,
     borderWidth: APP_SIZES.size2,
     borderRadius: APP_SIZES.size10,

@@ -5,6 +5,7 @@ import editTodoModalStyles from './EditTodoModalStyles';
 import APP_TEXTS from '../../utilities/appTexts';
 import {validateTitle} from '../../utilities/validations';
 import icons from '../../utilities/icons';
+import {COLORS} from '../../utilities/constants';
 
 export default function EditTodoModal({
   isModalVisible,
@@ -74,6 +75,8 @@ export default function EditTodoModal({
                 setTitleError(validateTitle(text));
               }}
               placeholder={APP_TEXTS.todoTitlePlaceholder}
+              placeholderTextColor={COLORS.grey}
+              cursorColor={COLORS.primaryColor}
               onFocus={() => setFocusedField('title')}
               onBlur={() => setFocusedField('')}
             />
@@ -103,6 +106,8 @@ export default function EditTodoModal({
               value={description}
               onChangeText={setDescription}
               placeholder={APP_TEXTS.todoDescPlaceholder}
+              placeholderTextColor={COLORS.grey}
+              cursorColor={COLORS.primaryColor}
               onFocus={() => setFocusedField('description')}
               onBlur={() => setFocusedField('')}
               multiline
